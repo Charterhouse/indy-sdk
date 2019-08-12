@@ -17,6 +17,7 @@ target 'Indy-demo' do
 
     target 'Indy-demoTests' do
 	inherit! :search_paths
+        pod 'OpenSSL', :git => 'https://github.com/wzbozon/OpenSSL-Pod'
     end
 end
 
