@@ -10,7 +10,6 @@ crate-type = ["cdylib", "rlib"]
 default = ["console_error_panic_hook"]
 
 [dependencies]
-libindy = { path = "../../libindy" }
 wasm-bindgen = "0.2"
 
 # The `console_error_panic_hook` crate provides better debugging of panics by
@@ -25,6 +24,11 @@ console_error_panic_hook = { version = "0.1.1", optional = true }
 #
 # Unfortunately, `wee_alloc` requires nightly Rust when targeting wasm for now.
 wee_alloc = { version = "0.4.2", optional = true }
+
+[dependencies.libindy]
+path = "../../libindy"
+default-features = false
+features = ["ed25519_sign_sodium", "ed25519_box_sodium", "sealedbox_sodium", "base58_rust_base58", "base64_rust_base64", "chacha20poly1305_ietf_sodium", "pair_amcl", "hash_openssl", "pwhash_argon2i13_sodium", "hmacsha256_sodium", "randombytes_sodium"]
 
 [dev-dependencies]
 wasm-bindgen-test = "0.2"
