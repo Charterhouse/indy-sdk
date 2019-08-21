@@ -20,7 +20,6 @@ extern crate indyrs as api;
 extern crate ursa;
 extern crate uuid;
 extern crate named_type;
-extern crate openssl;
 extern crate rmp_serde;
 extern crate rust_base58;
 extern crate time;
@@ -37,7 +36,7 @@ use utils::{pool, ledger, did, anoncreds};
 use utils::types::*;
 use utils::constants::*;
 
-use openssl::hash::{MessageDigest, Hasher};
+use sodiumoxide::crypto::hash;
 use sodiumoxide::crypto::secretbox;
 use self::rand::distributions::Alphanumeric;
 
@@ -613,9 +612,9 @@ mod high_cases {
         fn indy_attrib_requests_works_for_hash_value() {
             let (wallet_handle, pool_handle, did, _my_vk, wallet_config) = utils::setup_new_identity("indy_attrib_requests_works_for_hash_value");
 
-            let mut ctx = Hasher::new(MessageDigest::sha256()).unwrap();
-            ctx.update(&ATTRIB_RAW_DATA.as_bytes()).unwrap();
-            let hashed_attr = hex::encode(ctx.finish().unwrap().as_ref());
+            let mut ctx = hash::State::new();
+            ctx.update(&ATTRIB_RAW_DATA.as_bytes());
+            let hashed_attr = hex::encode(ctx.finalize().as_ref());
 
             let attrib_request = ledger::build_attrib_request(&did,
                                                               &did,
