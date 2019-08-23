@@ -1,7 +1,7 @@
 extern crate sodiumoxide;
 
 use errors::prelude::*;
-use sodiumoxide::crypto::hash::*;
+use sodiumoxide::crypto::hash::sha256::*;
 
 pub const HASHBYTES: usize = 32;
 
@@ -29,7 +29,7 @@ impl Hasher {
         Ok(())
     }
 
-    pub fn finish(&mut self) -> Result<[u8; 64], IndyError> {
+    pub fn finish(&mut self) -> Result<[u8; 32], IndyError> {
         let Digest(result) = self.state.finalize();
         Ok(result)
     }
