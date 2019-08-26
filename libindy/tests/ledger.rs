@@ -36,7 +36,7 @@ use utils::{pool, ledger, did, anoncreds};
 use utils::types::*;
 use utils::constants::*;
 
-use sodiumoxide::crypto::hash;
+use sodiumoxide::crypto::hash::sha256;
 use sodiumoxide::crypto::secretbox;
 use self::rand::distributions::Alphanumeric;
 
@@ -612,7 +612,7 @@ mod high_cases {
         fn indy_attrib_requests_works_for_hash_value() {
             let (wallet_handle, pool_handle, did, _my_vk, wallet_config) = utils::setup_new_identity("indy_attrib_requests_works_for_hash_value");
 
-            let mut ctx = hash::State::new();
+            let mut ctx = sha256::State::new();
             ctx.update(&ATTRIB_RAW_DATA.as_bytes());
             let hashed_attr = hex::encode(ctx.finalize().as_ref());
 
