@@ -36,7 +36,7 @@ features = [
     "base64_rust_base64",
     "chacha20poly1305_ietf_sodium",
     "pair_amcl",
-    "hash_openssl",
+    "hash_sodium",
     "pwhash_argon2i13_sodium",
     "hmacsha256_sodium",
     "randombytes_sodium"]
