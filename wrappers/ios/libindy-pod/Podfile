@@ -7,7 +7,7 @@ workspace 'Indy.xcworkspace'
 def appPods
     pod 'libsodium'
     pod 'libzmq',"4.2.3"
-    pod 'OpenSSL'
+    pod 'OpenSSL', :git => 'https://github.com/wzbozon/OpenSSL-Pod'
     pod 'libindy', "1.11.1"
 end
 
