@@ -17,11 +17,13 @@ validate() {
 if [ "${PROJECT_NAME}" == "" ]
 then
 exec > /tmp/${SCHEME_NAME}_archive.log 2>&1;
+open /tmp/${SCHEME_NAME}_archive.log
 echo "[ERROR]: PROJECT_NAME was not defined, did you select the 'Provide build settings from' in the 'Post-actions' for Archival?";
 envExit 1;
 
 else
 exec > ${TMPDIR}/${IBSC_MODULE}_archive.log 2>&1;
+open ${TMPDIR}/${IBSC_MODULE}_archive.log
 fi
 
 # Make sure the project is setup to actually archive, otherwise we don't do anything.
